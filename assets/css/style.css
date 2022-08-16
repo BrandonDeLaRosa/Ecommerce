@@ -1,0 +1,254 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  --first-color: hsl(354, 78%, 60%);
+  --button-color: hsl(0, 0%, 17%);
+  --button-color-alt: hsl(0, 0%, 21%);
+  --card-color: hsl(0, 0%, 90%);
+  --title-color: hsl(0, 0%, 15%);
+  --text-color: hsl(0, 0%, 35%);
+  --text-color-light: hsl(0, 0%, 55%);
+  --body-color: hsl(206, 4%, 97%);
+  --container-color: #fff;
+  --border-color: hsl(0, 0%, 94%);
+
+  /*========== Font and typography ==========*/
+  --body-font: 'Roboto', sans-serif;
+}
+
+/*=============== THEME ===============*/
+/*========== Variables Dark theme ==========*/
+/*
+    --first-color: hsl(182, 53%, 74%);
+    --button-color: hsl(246, 16%, 12%);
+    --button-color-alt: hsl(0, 0%, 28%);
+    --card-color: hsla(246, 16%, 5%, .5);
+    --title-color: hsl(0, 0%, 95%);
+    --text-color: hsl(0, 0%, 75%);
+    --body-color: hsl(249, 19%, 14%);
+    --container-color: hsl(246, 16%, 12%);
+    --border-color: hsl(0, 0%, 20%);
+*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+i{
+  font-size: 1.25rem;
+}
+
+body{
+  background-color: var(--body-color);
+  --body-font: 'Roboto', sans-serif;
+  color: var(--text-color);
+}
+
+body.dark-theme{
+  --body-font: 'Roboto', sans-serif;
+  --first-color: hsl(182, 53%, 74%);
+  --button-color: hsl(246, 16%, 12%);
+  --button-color-alt: hsl(0, 0%, 28%);
+  --card-color: hsla(246, 16%, 5%, .5);
+  --title-color: hsl(0, 0%, 95%);
+  --text-color: hsl(0, 0%, 75%);
+  --body-color: hsl(249, 19%, 14%);
+  --container-color: hsl(246, 16%, 12%);
+  --border-color: hsl(0, 0%, 20%);
+}
+
+
+
+.loader{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--body-color);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.loader--img{
+  width: 100px;
+  fill: var(--first-color);
+  animation: load 1.5s infinite;
+}
+
+
+@keyframes load{
+  0% {
+    transform: translateY( 0 );
+  }
+  50%{
+    transform: translateY( 10px );
+  }
+  100%{
+    transform: translateY( 0 );
+  }
+}
+
+
+
+.hide{
+  display: none;
+}
+
+/* Cambio de color en la barra de navegacion al realizar scroll en la pagina */
+.nav{
+  height: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1.5rem;
+}
+ 
+.nav--logo{
+  width: 2.5rem;
+  fill: var(--first-color);
+}
+
+.nav--btns{
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+
+.nav--menu{
+  width: 100%;
+  height: 100%;
+  background-color: var(--body-color);
+  position: fixed;
+  top: 0;
+  padding: 6rem 2rem 3rem 2rem;
+  right: -100%;
+  /* transition va operar sobre la opcion "right" */
+  transition: right .3seg linear ;
+  z-index: 10;
+}  
+
+.nav--menu.visible{
+  right: 0;
+}
+
+.nav--list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  color: var(--text-color);
+}
+
+.nav--item{
+  list-style: none;
+}
+
+.nav--close{
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 2.5rem;
+}
+
+.nav--cart{
+position: relative;
+
+}
+
+.counter{
+  position: absolute;
+  background-color: var(--title-color);
+  padding: .25rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  right: -5px;
+  width: 1rem;
+  height: 1rem;
+  color: var(--body-color);
+  font-size: 10px;
+}
+
+/* ===============Carrito de Compras ========== */
+/* Este elemento es  solo una pantalla con transparencia que va debajo del sidebar(Dando el efecto de opacidad) */
+/* se pone fixed para que ocupe al body como padre */
+.cart--container{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  background-color: rgba(144, 134, 148, 0.658);
+}
+
+.cart--container.visible{
+  right: 0;
+}
+
+/* Este elemento es el sidebar, debido a su max width, en resoluciones peuqeñas como celulares aparecera cubriendo toda la pantalla, pero en tabletas o pc´s , tv´s.
+Aparecera solo a un costado como sidebar. */
+.cart{
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--container-color);
+  box-shadow: -4px 5px 10px rgb(148, 148, 148);
+}
+
+
+
+/* ========================Cambio de trasparencia en la barra de navegacion======= */
+
+/* Cambio de color en la barra de navegacion al realizar scroll en la pagina */
+
+.header{
+  background-color: transparent;
+  /* Position fixed para que se quede pegado al body */
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Al usar fixed se pierde el tamaño de los elementos en el flujo html, por eso se agrega el width de nuevo */
+  width: 100%;
+}
+
+.scroll-header{
+  background-color: var(--container-color);
+  box-shadow: 0 1px 4px hsla(0, 4%, 15%, .10);
+}
+
+/* Se puede eescribit tambien como: .header.scroll-header, esto es una evaluacion(si eiste la clase header y la clase scro...)*/
+
+main{
+  padding-top: 4rem;
+}
+
+
+
+/* Selector doble evaluacion y  */
+
+
+/* Para que se guarde el darkMode y en general a la permanencia de informacion al refrescar la pagina hay que agregarlo en el localStorage. */
+
+
+
+
+
